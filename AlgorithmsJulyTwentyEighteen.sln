@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayLists", "ArrayList\Arr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListsTests", "ArrayListsTests\ArrayListsTests.csproj", "{C5E95DC8-BB0B-48E5-A839-30D4AE7DA1F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StacksAndQueues", "StacksAndQueues\StacksAndQueues.csproj", "{76391BDC-4DEF-41D5-9CFA-F1509EE2B4C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C5E95DC8-BB0B-48E5-A839-30D4AE7DA1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5E95DC8-BB0B-48E5-A839-30D4AE7DA1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5E95DC8-BB0B-48E5-A839-30D4AE7DA1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76391BDC-4DEF-41D5-9CFA-F1509EE2B4C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76391BDC-4DEF-41D5-9CFA-F1509EE2B4C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76391BDC-4DEF-41D5-9CFA-F1509EE2B4C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76391BDC-4DEF-41D5-9CFA-F1509EE2B4C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
