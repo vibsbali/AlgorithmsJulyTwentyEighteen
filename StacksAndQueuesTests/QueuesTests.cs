@@ -6,132 +6,167 @@ namespace StacksAndQueuesTests
     [TestClass]
     public class QueuesTests
     {
-      [TestMethod]
-      public void AssertCountZeroAtInitialization()
-      {
-         var queue = new Queues<int>();
-         Assert.IsTrue(queue.Count == 0);
-      }
+        [TestMethod]
+        public void AssertCountZeroAtInitialization()
+        {
+            var queue = new Queues<int>();
+            Assert.IsTrue(queue.Count == 0);
+        }
 
-      [TestMethod]
-      public void AssertSizeFourAtEmptyInitialization()
-      {
-         var queue = new Queues<int>();
-         Assert.IsTrue(queue.InitialSize == 4);
-      }
+        [TestMethod]
+        public void AddFiveRemoveFiveAddTenRemoveTenAddFour()
+        {
+            var queue = new Queues<int>();
+            for (int i = 0; i < 5; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-      [TestMethod]
-      public void AssertSizeSixteenWhenInstantiatedWithSixteenSize()
-      {
-         var queue = new Queues<int>(16);
-         Assert.IsTrue(queue.InitialSize == 16);
-      }
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
 
-      [TestMethod]
-      public void AddFiveElementsAssertCountFive()
-      {
-         var queue = new Queues<int>();
+            for (int i = 0; i < 10; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-         for (int i = 0; i < 5; i++)
-         {
-            queue.Enqueue(i);
-         }
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
 
-         Assert.AreEqual(5, queue.Count);
-      }
+            for (int i = 0; i < 4; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-      [TestMethod]
-      public void AddFiveElementsAssertElementsAddedInOrder()
-      {
-         var queue = new Queues<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
+        }
 
-         for (int i = 0; i < 5; i++)
-         {
-            queue.Enqueue(i);
-         }
+        [TestMethod]
+        public void AssertSizeFourAtEmptyInitialization()
+        {
+            var queue = new Queues<int>();
+            Assert.IsTrue(queue.InitialSize == 4);
+        }
 
-         for (int i = 0; i < 5; i++)
-         {
-            var item = queue.Dequeue();
-            Assert.AreEqual(i, item);
-         }
-      }
+        [TestMethod]
+        public void AssertSizeSixteenWhenInstantiatedWithSixteenSize()
+        {
+            var queue = new Queues<int>(16);
+            Assert.IsTrue(queue.InitialSize == 16);
+        }
 
-      [TestMethod]
-      public void AddSixteenItems_RemoveNineItems_AssertCorrectBehaviourOfResize()
-      {
-         var queue = new Queues<int>();
+        [TestMethod]
+        public void AddFiveElementsAssertCountFive()
+        {
+            var queue = new Queues<int>();
 
-         for (int i = 0; i < 16; i++)
-         {
-            queue.Enqueue(i);
-         }
+            for (int i = 0; i < 5; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-         for (int k = 15; k > 6; k--)
-         {
-            var item = queue.Dequeue();
-         }
+            Assert.AreEqual(5, queue.Count);
+        }
 
-         Assert.AreEqual(7, queue.Count);
-      }
+        [TestMethod]
+        public void AddFiveElementsAssertElementsAddedInOrder()
+        {
+            var queue = new Queues<int>();
 
-      [TestMethod]
-      public void AddFour_RemoveTwo_AddFour_Assert_CorrectBehviour()
-      {
-         var queue = new Queues<int>();
+            for (int i = 0; i < 5; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-         for (int i = 0; i < 4; i++)
-         {
-            queue.Enqueue(i);
-         }
+            for (int i = 0; i < 5; i++)
+            {
+                var item = queue.Dequeue();
+                Assert.AreEqual(i, item);
+            }
+        }
 
-         for (int k = 0; k < 2; k++)
-         {
-            var item = queue.Dequeue();
-            Assert.AreEqual(item, k);
-         }
+        [TestMethod]
+        public void AddSixteenItems_RemoveNineItems_AssertCorrectBehaviourOfResize()
+        {
+            var queue = new Queues<int>();
 
-         for (int j = 5; j < 8; j++)
-         {
-            queue.Enqueue(j);
-         }
+            for (int i = 0; i < 16; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-         for (int k = 2; k < 4; k++)
-         {
-            var item = queue.Dequeue();
-            Assert.AreEqual(item, k);
-         }
+            for (int k = 15; k > 6; k--)
+            {
+                var item = queue.Dequeue();
+            }
 
-      }
+            Assert.AreEqual(7, queue.Count);
+        }
 
-      [TestMethod]
-      public void AddThree_RemoveTwo_AddOne_Assert_CorrectBehviourForWrappedHead()
-      {
-         var queue = new Queues<int>();
+        [TestMethod]
+        public void AddFour_RemoveTwo_AddFour_Assert_CorrectBehviour()
+        {
+            var queue = new Queues<int>();
 
-         for (int i = 0; i < 3; i++)
-         {
-            queue.Enqueue(i);
-         }
+            for (int i = 0; i < 4; i++)
+            {
+                queue.Enqueue(i);
+            }
 
-         for (int k = 0; k < 2; k++)
-         {
-            var item = queue.Dequeue();
-            Assert.AreEqual(item, k);
-         }
+            for (int k = 0; k < 2; k++)
+            {
+                var item = queue.Dequeue();
+                Assert.AreEqual(item, k);
+            }
 
-         //Add two more
-         for (int j = 3; j < 5; j++)
-         {
-            queue.Enqueue(j);
-         }
+            for (int j = 5; j < 8; j++)
+            {
+                queue.Enqueue(j);
+            }
 
-         for (int i = 2; i < 5; i++)
-         {
-            var item = queue.Dequeue();
-            Assert.AreEqual(item, i);
-         }
+            for (int k = 2; k < 4; k++)
+            {
+                var item = queue.Dequeue();
+                Assert.AreEqual(item, k);
+            }
 
-      }
-   }
+        }
+
+        [TestMethod]
+        public void AddThree_RemoveTwo_AddOne_Assert_CorrectBehviourForWrappedHead()
+        {
+            var queue = new Queues<int>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            for (int k = 0; k < 2; k++)
+            {
+                var item = queue.Dequeue();
+                Assert.AreEqual(item, k);
+            }
+
+            //Add two more
+            for (int j = 3; j < 5; j++)
+            {
+                queue.Enqueue(j);
+            }
+
+            for (int i = 2; i < 5; i++)
+            {
+                var item = queue.Dequeue();
+                Assert.AreEqual(item, i);
+            }
+
+        }
+    }
 }
