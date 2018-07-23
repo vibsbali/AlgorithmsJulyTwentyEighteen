@@ -7,7 +7,7 @@ namespace StacksAndQueues
         T[] backingStore; // The number of items in the queue.
 
         public int Count { get; private set; }
-        internal int Head { get; private set; }
+        internal int Head { get; private set; } 
         public int Tail { get; private set; }
 
         public Deque(int size = 0)
@@ -163,7 +163,7 @@ namespace StacksAndQueues
             if (Count == 0)
             {
                 throw new InvalidOperationException();
-            }
+            }                                  
 
             var itemToReturn = backingStore[Head];
             backingStore[Head] = default(T);
