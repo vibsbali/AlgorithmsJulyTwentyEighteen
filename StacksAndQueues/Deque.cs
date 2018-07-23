@@ -181,6 +181,7 @@ namespace StacksAndQueues
             {
                 DecreaseStorage();
             }
+
             --Count;
             return itemToReturn;
         }
