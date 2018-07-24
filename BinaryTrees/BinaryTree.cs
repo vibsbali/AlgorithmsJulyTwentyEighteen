@@ -248,6 +248,113 @@ namespace BinaryTrees
         {
             return GetEnumerator();
         }
+
+        public IEnumerator<T> BreadthFirstSearch()
+        {
+            var auxQueue = new Queue<Node>();
+            var finalQueue = new Queue<Node>();
+
+            auxQueue.Enqueue(Head);
+            while (auxQueue.Count > 0)
+            {
+                var currentNode = auxQueue.Dequeue();
+
+                finalQueue.Enqueue(currentNode);
+                if (currentNode.HasLeftChild)
+                {
+                    auxQueue.Enqueue(currentNode.LeftNode);
+                }
+
+                if (currentNode.HasRightChild)
+                {
+                    auxQueue.Enqueue(currentNode.RightNode);
+                }
+            }
+
+            while (finalQueue.Count > 0)
+            {
+                yield return finalQueue.Dequeue().Value;
+            }
+        }
+
+        public IEnumerator<T> DepthFirstSearch()
+        {
+            var auxQueue = new Queue<Node>();
+            var finalStack = new Stack<Node>();
+
+            auxQueue.Enqueue(Head);
+            while (auxQueue.Count > 0)
+            {
+                var currentNode = auxQueue.Dequeue();
+
+                finalStack.Push(currentNode);
+                if (currentNode.HasLeftChild)
+                {
+                    auxQueue.Enqueue(currentNode.LeftNode);
+                }
+
+                if (currentNode.HasRightChild)
+                {
+                    auxQueue.Enqueue(currentNode.RightNode);
+                }
+            }
+
+            while (finalStack.Count > 0)
+            {
+                yield return finalStack.Pop().Value;
+            }
+        }
+
+        public void InOrderTraversal(Action<T> actionToPerform)
+        {
+            PerformInOrderTravesal(actionToPerform, Head);
+        }
+
+        private void PerformInOrderTravesal(Action<T> actionToPerform, Node current)
+        {
+            if (current == null)
+            {
+                return;
+            }
+
+            PerformInOrderTravesal(actionToPerform, current.LeftNode);
+            actionToPerform.Invoke(current.Value);
+            PerformInOrderTravesal(actionToPerform, current.RightNode);
+        }
+
+        public void PreOrderTraversal(Action<T> actionToPerform)
+        {
+            PerformPreOrderTraversal(actionToPerform, Head);
+        }
+
+        private void PerformPreOrderTraversal(Action<T> actionToPerform, Node current)
+        {
+            if (current == null)
+            {
+                return;
+            }
+
+            actionToPerform.Invoke(current.Value);
+            PerformInOrderTravesal(actionToPerform, current.LeftNode);
+            PerformInOrderTravesal(actionToPerform, current.RightNode);
+        }
+
+        public void PostOrderTraversal(Action<T> actionToPerform)
+        {
+            PerformPostOrderTraversal(actionToPerform, Head);
+        }
+
+        private void PerformPostOrderTraversal(Action<T> actionToPerform, Node current)
+        {
+            if (current == null)
+            {
+                return;
+            }
+
+            PerformInOrderTravesal(actionToPerform, current.LeftNode);
+            PerformInOrderTravesal(actionToPerform, current.RightNode);
+            actionToPerform.Invoke(current.Value);
+        }
     }
 }
 
