@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("BinarySearchTreesTests")]
 namespace BinaryTrees
 {
     public class BinaryTree<T> : IEnumerable<T>
@@ -45,6 +47,7 @@ namespace BinaryTrees
                         else
                         {
                             node.LeftNode = nodeToAdd;
+                            break;
                         }
                     }
                     else
@@ -56,6 +59,7 @@ namespace BinaryTrees
                         else
                         {
                             node.RightNode = nodeToAdd;
+                            break;
                         }
                     }
                 }
@@ -237,11 +241,11 @@ namespace BinaryTrees
             return false;
         }
 
-        public uint Count { get; private set; }
+        public int Count { get; private set; }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.BreadthFirstSearch();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

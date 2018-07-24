@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacksAndQueues", "StacksAn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacksAndQueuesTests", "StacksAndQueuesTests\StacksAndQueuesTests.csproj", "{078936E1-6D27-43EC-8DCD-990782EA8C39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTrees", "BinaryTrees\BinaryTrees.csproj", "{65DEF4F0-BC7E-4BBA-9191-E574F693A635}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryTrees", "BinaryTrees\BinaryTrees.csproj", "{65DEF4F0-BC7E-4BBA-9191-E574F693A635}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTreesTests", "BinarySearchTreesTests\BinarySearchTreesTests.csproj", "{2375D2A5-CC74-414B-A1F3-D2D7701BA4D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{65DEF4F0-BC7E-4BBA-9191-E574F693A635}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65DEF4F0-BC7E-4BBA-9191-E574F693A635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65DEF4F0-BC7E-4BBA-9191-E574F693A635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2375D2A5-CC74-414B-A1F3-D2D7701BA4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2375D2A5-CC74-414B-A1F3-D2D7701BA4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2375D2A5-CC74-414B-A1F3-D2D7701BA4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2375D2A5-CC74-414B-A1F3-D2D7701BA4D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
