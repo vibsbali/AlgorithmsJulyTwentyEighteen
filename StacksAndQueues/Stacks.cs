@@ -23,7 +23,7 @@ namespace StacksAndQueues
 
         public void Push(T item)
         {
-            backingStore.EnqueueFront(item);
+            backingStore.EnqueueFirst(item);
         }
 
         public int Count => backingStore.Count;
@@ -34,7 +34,7 @@ namespace StacksAndQueues
             {
                 throw new InvalidOperationException();
             }
-            return backingStore.DequeueFront();
+            return backingStore.DequeueFirst();
         }
 
         public T Peek()

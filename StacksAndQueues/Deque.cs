@@ -4,8 +4,7 @@ namespace StacksAndQueues
 {
     public class Deque<T> 
     {
-        T[] backingStore; // The number of items in the queue.
-
+        T[] _backingStore; // The number of items in the queue.
         public int Count { get; private set; }
         internal int Head { get; private set; } 
         public int Tail { get; private set; }
@@ -16,32 +15,32 @@ namespace StacksAndQueues
             {
                 size = 4;
             }
-            backingStore = new T[size];
+            _backingStore = new T[size];
 
             Head = 0;
-            Tail = backingStore.Length - 1;
+            Tail = _backingStore.Length - 1;
         }
 
         //Think of it as a linked list add item to front of head
         //so create a new node and add it as previous to head 
-        public void EnqueueFront(T item)
+        public void EnqueueFirst(T item)
         {
             //We have exhausted the backing store
-            if (backingStore.Length == Count)
+            if (_backingStore.Length == Count)
             {
                 IncreaseStorage();
             }
 
             if (Head == 0)
             {
-                Head = backingStore.Length - 1;
+                Head = _backingStore.Length - 1;
             }
             else
             {
                 --Head;
             }
             
-            backingStore[Head] = item;
+            _backingStore[Head] = item;
             ++Count;
         }
 
@@ -52,7 +51,7 @@ namespace StacksAndQueues
                 throw new InvalidCastException();
             }
 
-            return backingStore[Head];
+            return _backingStore[Head];
         }
 
         public T PeekLast()
@@ -62,26 +61,26 @@ namespace StacksAndQueues
                 throw new InvalidCastException();
             }
 
-            return backingStore[Tail];
+            return _backingStore[Tail];
         }
 
         private void IncreaseStorage()
         {
-            var temp = new T[backingStore.Length * 2];
+            var temp = new T[_backingStore.Length * 2];
             var index = 0;
 
             //check if head is wrapped
             if (Head > Tail)
             {
                 //Start from Head all the way to end of the array and copy
-                for (int i = Head; i < backingStore.Length; i++)
+                for (int i = Head; i < _backingStore.Length; i++)
                 {
-                    temp[index++] = backingStore[i];
+                    temp[index++] = _backingStore[i];
                 }
                 //Then start from zero and the way to Tail
                 for (int i = 0; i <= Tail; i++)
                 {
-                    temp[index++] = backingStore[i];
+                    temp[index++] = _backingStore[i];
                 }
             }
             else
@@ -89,34 +88,34 @@ namespace StacksAndQueues
                 //Start from Head to Tail 
                 for (int i = Head; i <= Tail; i++)
                 {
-                    temp[index++] = backingStore[i];
+                    temp[index++] = _backingStore[i];
                 }
             }
             //extra bump
             --index;
 
-            backingStore = temp;
+            _backingStore = temp;
             Head = 0;
             Tail = index;
         }
 
         private void DecreaseStorage()
         {
-            var temp = new T[backingStore.Length * 1/2];
+            var temp = new T[_backingStore.Length * 1/2];
             var index = 0;
 
             //check if head is wrapped
             if (Head > Tail)
             {
                 //Start from Head all the way to end of the array and copy
-                for (int i = Head; i < backingStore.Length; i++)
+                for (int i = Head; i < _backingStore.Length; i++)
                 {
-                    temp[index++] = backingStore[i];
+                    temp[index++] = _backingStore[i];
                 }
                 //Then start from zero and the way to Tail
                 for (int i = 0; i <= Tail; i++)
                 {
-                    temp[index++] = backingStore[i];
+                    temp[index++] = _backingStore[i];
                 }
             }
             else
@@ -124,13 +123,13 @@ namespace StacksAndQueues
                 //Start from Head to Tail 
                 for (int i = Head; i <= Tail; i++)
                 {
-                    temp[index++] = backingStore[i];
+                    temp[index++] = _backingStore[i];
                 }
             }
             //extra bump
             --index;
 
-            backingStore = temp;
+            _backingStore = temp;
             Head = 0;
             Tail = index;
         }
@@ -138,12 +137,12 @@ namespace StacksAndQueues
         //Add item to tail so 
         public void EnqueLast(T item)
         {
-            if (backingStore.Length == Count)
+            if (_backingStore.Length == Count)
             {
                 IncreaseStorage();
             }
 
-            if (Tail == backingStore.Length - 1)
+            if (Tail == _backingStore.Length - 1)
             {
                 Tail = 0;
             }
@@ -152,7 +151,7 @@ namespace StacksAndQueues
                 Tail++;
             }
 
-            backingStore[Tail] = item;
+            _backingStore[Tail] = item;
             ++Count;
         }
 
@@ -165,9 +164,9 @@ namespace StacksAndQueues
                 throw new InvalidOperationException();
             }                                  
 
-            var itemToReturn = backingStore[Head];
-            backingStore[Head] = default(T);
-            if (Head == backingStore.Length - 1)
+            var itemToReturn = _backingStore[Head];
+            _backingStore[Head] = default(T);
+            if (Head == _backingStore.Length - 1)
             {
                 Head = 0;
             }
@@ -177,7 +176,7 @@ namespace StacksAndQueues
             }
 
             //if 2/3 array is empty
-            if (backingStore.Length >  4 && Count < backingStore.Length * 2/3)
+            if (_backingStore.Length >  4 && Count < _backingStore.Length * 2/3)
             {
                 DecreaseStorage();
             }
@@ -194,11 +193,11 @@ namespace StacksAndQueues
                 throw new InvalidOperationException();
             }
 
-            var itemToReturn = backingStore[Tail];
-            backingStore[Tail] = default(T);
+            var itemToReturn = _backingStore[Tail];
+            _backingStore[Tail] = default(T);
             if (Tail == 0)
             {
-                Tail = backingStore.Length - 1; 
+                Tail = _backingStore.Length - 1; 
             }
             else
             {
@@ -206,7 +205,7 @@ namespace StacksAndQueues
             }
 
             //if 2/3 array is empty
-            if (backingStore.Length > 4 && Count < backingStore.Length * 2 / 3)
+            if (_backingStore.Length > 4 && Count < _backingStore.Length * 2 / 3)
             {
                 DecreaseStorage();
             }

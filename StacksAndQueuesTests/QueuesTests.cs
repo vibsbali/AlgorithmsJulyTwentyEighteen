@@ -56,6 +56,66 @@ namespace StacksAndQueuesTests
         }
 
         [TestMethod]
+        public void AddFourRemoveFourTwoTimesAssertCorrectBehaviour()
+        {
+            var queue = new Queues<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
+        }
+
+        [TestMethod]
+        public void AddFourRemoveFourThenAddFiveRemoveFiveAddFourRemoveFourAssertCorrectBehaviour()
+        {
+            var queue = new Queues<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.AreEqual(i, queue.Dequeue());
+            }
+        }
+
+        [TestMethod]
         public void AssertSizeSixteenWhenInstantiatedWithSixteenSize()
         {
             var queue = new Queues<int>(16);

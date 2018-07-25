@@ -24,7 +24,7 @@ namespace StacksAndQueues
         
        public T Dequeue()
        {
-            return backingStore.DequeueFront();
+            return backingStore.DequeueFirst();
        }
 
        public T Peek()
